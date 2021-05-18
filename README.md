@@ -27,15 +27,45 @@ Thereare 2 different packet flows on the Internet:
 - **Packet loss**: A packet that is full because of its finite-size, a packet may be dropped.
 ![router](https://user-images.githubusercontent.com/59812671/118582582-70077f80-b748-11eb-8948-995d847390c0.png)
 ---
-## Protocol Stack
-A **protocol stack** is a the portion of the operating system that addresses the problems below:
+## Protocol Stack for Networking
+A **protocol stack for networking** is a the portion of the operating system that addresses the problems below:
 1. Arbitrary message size and physical limitations of network packets (network protocal there is a maximum packet size and message size may not fit the size limitation.)
 2. Out of order delivery of packets (There is no guarantee that the packets of the message will arrive in order by queueing delays and variety of paths they can take.)
 3. Packet loss in the network 
 4. Bit errors in transmission 
 5. Queuing delays en route to the destination (Since the packets take several different networksbefore the destination, it is hard to predict this information.)
-### Internet protocol layers
+
+This requires well-defined interfaces between any two layers of the protocol stack. The modularity allows integration of a new module at a particular layer with minimal changes to the other layers but provides performance penalty.
+
+### 5 layers Internet protocol stack
 ![Internet protocol stack layers](https://user-images.githubusercontent.com/59812671/118592528-ec0ac300-b75a-11eb-9b66-67c42f0387f1.png)
 #### Application Layer
 - Responsible for supporting network-based applications such as an instant messenger (IM), multi-player video games, P2P music/video sharing, web browser, electronic mail, and file transfer. 
 - provide a common language for application level entities (clients, servers, and peers) to use for communicating with each other.
+#### Transport Layer
+- Takes an application layer message and conveys it between the end of communication.
+- It is responsible of 5 problems addressed above.
+There are 2 dominant transport protocols: TCP and UDP.
+
+| TCP  | UDP  |
+| ------------- | ------------- |
+| provides end-to-end reliabilithy for in-order data delivery | deals with message that have strict boundaries and do not provide in-order delivery |
+| forms a byte-stream and gives stream semantics for data transport | gives datagram semantics |
+| connection oriented protocol: establish a connection between the two endpoints before the actual data transmission takes place, and the connection is closed( connection teardown) after it is finished | does not involve any connection establishment before sending the message, or any teardown after sending the message |
+
+
+![passage of a packet through the network](https://user-images.githubusercontent.com/59812671/118732296-e2329f80-b7ee-11eb-9d5c-f8f78f08a399.PNG)
+
+#### Network Layer
+- It involves how to route a packet from source to destination.
+- **For outgoing message**: find a wway to get packet to the destination.
+- **For incoming message**: passes and collects packet into message to the transport layer.
+- **IP address**: help to subsume both the formatting of the packet and determining the route of the packets.
+#### Link Layer
+- Ferries the IP packets between nodes on the Internet through which a packet has to be routed from source to destination. 
+- Example: Ethernet, Token Ring, and IEEE 802.11
+- **For outgoing message**: hands the IP packet to the appropriate link layer (if necessary breaking up the IP packet into fragments at the network layer)
+- **For incoming message**: the network layer reassembles the fragments to reconstruct the original IP packet.
+#### Physical Layer
+- This layer is responsible for physically (electrically, optically, etc.) moving the bits of the packet from one node to the next.
+
