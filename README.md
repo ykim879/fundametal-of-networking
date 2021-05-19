@@ -42,6 +42,12 @@ This requires well-defined interfaces between any two layers of the protocol sta
 #### Application Layer
 - Responsible for supporting network-based applications such as an instant messenger (IM), multi-player video games, P2P music/video sharing, web browser, electronic mail, and file transfer. 
 - provide a common language for application level entities (clients, servers, and peers) to use for communicating with each other.
+##### Eamples of application vs application layer
+| | Applications  | Application layer  |
+| ---- | ------------- | ------------- |
+| web | **client**: FireFox, Internet Explorer, etc. **server**: host of specilized serveces (Google and Yahoo!) | HTTP ( Hyper-Text Transfer Protocol) |
+| electronic mail | **client**: Microsoft Outlook and Unix Pine. **server**: mail server (Microsoft Exchange) | SMTP (Simple Mail Transfer Protocol) |
+
 #### Transport Layer
 - Takes an application layer message and conveys it between the end of communication.
 - It is responsible of 5 problems addressed above.
@@ -52,9 +58,32 @@ There are 2 dominant transport protocols: TCP and UDP.
 | provides end-to-end reliabilithy for in-order data delivery | deals with message that have strict boundaries and do not provide in-order delivery |
 | forms a byte-stream and gives stream semantics for data transport | gives datagram semantics |
 | connection oriented protocol: establish a connection between the two endpoints before the actual data transmission takes place, and the connection is closed( connection teardown) after it is finished | does not involve any connection establishment before sending the message, or any teardown after sending the message |
-
+##### Main functionalities
+1. Support arbitrary data size at the application level 
+2. Support in-order delivery of data 
+3. Shield the application from loss of data 
+4. Shield the application from bit errors in transmission.
+###### Solution #1: uses scatter/gather and sequence number to support functionality #1 and #2
+1. scatter/gather
+ -  scatter: source breaks up the data into packets commensurate with the hardware limitations of the network. 
+ -  gather: destination assembles the packets into the original message
+2. sequence number: helps in the reconstruction of the original message at the receiving end despite the order of the arrival.
+###### Solution #2: uses positive and RTT to support functionality #3 and #4
+Bit errors do not always make the packet completely unusable. It is possible to do error correction on packets, usually referred to as Forward Error Correction (FEC). However, when the errors are beyond the fixing capabilities of FEC algorithms, the packet is as good as lost.
+The loss of data is dealt with following techniques:
+1. positive acknowledge: It indicates package has been arrived to the destination.
+2. RTT (round trip time): an estimation of the cumulative time delay experienced at the sender for sending a packet and receiving an acknowledgment, and is used in selecting timeout values.
 
 ![passage of a packet through the network](https://user-images.githubusercontent.com/59812671/118732296-e2329f80-b7ee-11eb-9d5c-f8f78f08a399.PNG)
+
+#### Transport layer types of protocols
+##### Stop and wait protocols
+![stop and wait](https://user-images.githubusercontent.com/59812671/118756784-8254ec80-b820-11eb-8f00-3a02306f2ce4.PNG)
+
+1. The sender sends a packet and waits for a positive acknowledgement(ACK)
+2. As soon as a packet is received, the recipient generates and sends an ACK for that packet. The ACK contains the information for the sender to discern the packet which is the sequence number of the received packet. 
+3. The sender waits for a period of time called timeout. If within this period, it does not 
+hear an ACK, it re-transmits the packet. Similarly, the destination may re-transmit the ACK.
 
 #### Network Layer
 - It involves how to route a packet from source to destination.
