@@ -66,6 +66,8 @@ There are 2 dominant transport protocols: TCP and UDP.
  - It may bring problems to the real-time traffic that needs determistic process
 4. It is a full-duplex connection: both sides can simultaneously send and receive data.
 5. The data flow between two endpoints is a stream of data.
+
+
 **TCP data connection process**
 1. Set up a connection between two endpoints
 picture
