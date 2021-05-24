@@ -58,6 +58,20 @@ There are 2 dominant transport protocols: TCP and UDP.
 | provides end-to-end reliabilithy for in-order data delivery | deals with message that have strict boundaries and do not provide in-order delivery |
 | forms a byte-stream and gives stream semantics for data transport | gives datagram semantics |
 | connection oriented protocol: establish a connection between the two endpoints before the actual data transmission takes place, and the connection is closed( connection teardown) after it is finished | does not involve any connection establishment before sending the message, or any teardown after sending the message |
+###### TCP
+**Properties:**
+1. Need a connection between two endpoints
+2. It is reliable: it guarantees that data from upper level is handed without loss and corruption
+3. It provides congestion control: it self regulates its flow by observing the congestion.
+ - It may bring problems to the real-time traffic that needs determistic process
+4. It is a full-duplex connection: both sides can simultaneously send and receive data.
+5. The data flow between two endpoints is a stream of data.
+**TCP data connection process**
+1. Set up a connection between two endpoints
+picture
+2. The clinet sends a series of requests and the server respons by sending a series of objects in return. These ae appeared as a stream of bytes.
+3. Two sides tear down the connection. 
+picture
 ##### Main functionalities
 1. Support arbitrary data size at the application level 
 2. Support in-order delivery of data 
