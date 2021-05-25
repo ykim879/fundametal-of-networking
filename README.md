@@ -69,11 +69,15 @@ There are 2 dominant transport protocols: TCP and UDP.
 
 
 **TCP data connection process**
-1. Set up a connection between two endpoints
-picture
+1. Set up a connection between two endpoints using *three-way handshake*
+
+![connection set up](https://user-images.githubusercontent.com/59812671/119539539-223ed880-bd41-11eb-83e8-18348e3059e3.png)
+
 2. The clinet sends a series of requests and the server respons by sending a series of objects in return. These ae appeared as a stream of bytes.
-3. Two sides tear down the connection. 
-picture
+3. Two sides tear down the connection: both endpoints have to agree with tearing down
+
+![connection teardown](https://user-images.githubusercontent.com/59812671/119544315-6f717900-bd46-11eb-9193-cdff15fa1a9d.png)
+
 ##### Main functionalities
 1. Support arbitrary data size at the application level 
 2. Support in-order delivery of data 
