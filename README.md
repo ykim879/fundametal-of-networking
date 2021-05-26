@@ -95,7 +95,16 @@ The loss of data is dealt with following techniques:
 2. RTT (round trip time): an estimation of the cumulative time delay experienced at the sender for sending a packet and receiving an acknowledgment, and is used in selecting timeout values.
 
 ![passage of a packet through the network](https://user-images.githubusercontent.com/59812671/118732296-e2329f80-b7ee-11eb-9d5c-f8f78f08a399.PNG)
+###### UDP
 
+UDP provides unreliable data service. It does not have advanced features that TCP has ( such as setting up the connection and providing self-control and reliable handshake) but it provides a service that has less overhead and latency and is faster and simpler. By this UDP messages may be out of order and lost.
+
+###### Applicationss that use UDP vs TCP
+
+![udp vs tcp](https://user-images.githubusercontent.com/59812671/119569941-4a8bfe80-bd64-11eb-8053-a8e31cd75503.PNG)
+
+
+Ramachandran, U., &amp; Leahy, W. (2011). *Computer systems: an integrated approach to architecture and operating systems*. Addison-Wesley. 
 #### Transport layer types of protocols
 ##### Stop and wait protocols
 ![stop and wait](https://user-images.githubusercontent.com/59812671/118756784-8254ec80-b820-11eb-8f00-3a02306f2ce4.PNG)
@@ -107,9 +116,15 @@ hear an ACK, it re-transmits the packet. Similarly, the destination may re-trans
 
 #### Network Layer
 - It involves how to route a packet from source to destination.
-- **For outgoing message**: find a wway to get packet to the destination.
+- **For outgoing message**: find a way to get packet to the destination.
 - **For incoming message**: passes and collects packet into message to the transport layer.
 - **IP address**: help to subsume both the formatting of the packet and determining the route of the packets.
+
+
+**Why Network Layer cannot be combined with Transport layer?**
+1. There may be many different network connections from a host use different route
+2. Intermediate hops only forward the packet towards the final destination so we need independent layer for simplicity.
+3. Route is not fixed.
 #### Link Layer
 - Ferries the IP packets between nodes on the Internet through which a packet has to be routed from source to destination. 
 - Example: Ethernet, Token Ring, and IEEE 802.11
@@ -118,3 +133,5 @@ hear an ACK, it re-transmits the packet. Similarly, the destination may re-trans
 #### Physical Layer
 - This layer is responsible for physically (electrically, optically, etc.) moving the bits of the packet from one node to the next.
 
+## Reference
+Ramachandran, U., &amp; Leahy, W. (2011). *Computer systems: an integrated approach to architecture and operating systems*. Addison-Wesley. 
