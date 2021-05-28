@@ -26,6 +26,13 @@ Thereare 2 different packet flows on the Internet:
 - **Queing delay**: In the presence of other traffic, a packet may experience delays on the packet.
 - **Packet loss**: A packet that is full because of its finite-size, a packet may be dropped.
 ![router](https://user-images.githubusercontent.com/59812671/118582582-70077f80-b748-11eb-8948-995d847390c0.png)
+### Host VS Router
+
+| Host  | Router  |
+| ------------- | ------------- |
+| end device at the edge of the network containing single connection (single NIC) | intermediate device of the network containing several connections (several NICs) |
+| contain whole 5 layers | contain only bottom 3 layers |
+
 ---
 ## Protocol Stack for Networking
 A **protocol stack for networking** is a the portion of the operating system that addresses the problems below:
@@ -132,6 +139,22 @@ hear an ACK, it re-transmits the packet. Similarly, the destination may re-trans
 - **For incoming message**: the network layer reassembles the fragments to reconstruct the original IP packet.
 #### Physical Layer
 - This layer is responsible for physically (electrically, optically, etc.) moving the bits of the packet from one node to the next.
+### Internet Addressing: IP address
 
+**Properties**:
+1. support hierarchical addressing of netwokrs that comprise the Internet
+2. Has to be unique
+3. total 32 bits with dotted decimal notation p.q.r.s/n where each p,q,r, and s are 8 bits and n represent IP networks.
+ - top n bit represent IP network and bottom bits uniquely identify the specific devices connected to the network.
+### Network Service Model: how network facilitate packet delivery among the end hosts?
+#### Method 1: Circuit Switching
+- Cricuit Switching reserves the network resources physically once the call is established for the duration of the call
+- It guaranteed the quality of the service once the call is established and has a possiblity of under-utilizing
+- If the maximum limit (bandwith) is reached, no more call can be reached.
+#### Method 2: Packet Switching
+- The packet switching doesnot reserve the bandwidth on physical links but switch examines the destination of the packet when the whole packet has been reached.
+- It is called store and foward network that has store and forward delay because it cannot start sending the packet until whole packet has been reached to the switch.
+- *Queing Delay*: a delay time that packet stays in a buffer when the packet cannot be forwarded because switch is dealing with the packets that has been delivered before
+- *Packet loss*: the packet has been dropped because the buffer is full.
 ## Reference
 Ramachandran, U., &amp; Leahy, W. (2011). *Computer systems: an integrated approach to architecture and operating systems*. Addison-Wesley. 
